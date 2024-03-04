@@ -1,4 +1,8 @@
-function Navbar() {
+import sun from "./../../img/icons/sun.svg";
+import moon from "./../../img/icons/sun.svg";
+import "./style.css";
+
+const Navbar = () => {
     return (
         <nav className="nav">
             <div className="container">
