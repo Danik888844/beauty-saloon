@@ -2,16 +2,14 @@
 
 .header {
 	padding: 40px 0;
-	min-height: 695px;
+	min-height: 700px;
 
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
 
-	background-color: var(--header-bg);
-	background-image: url('./../../img/header-bg.png');
-	background-repeat: no-repeat;
-	background-size: auto;
+	background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url('./../../img/header-bg.jpg') 50% / cover no-repeat;
 	background-position: center center;
 
 	color: var(--header-text);
@@ -25,9 +23,10 @@
 
 .header__title {
 	margin-bottom: 20px;
-	font-size: 40px;
+	font-size: 72px;
 	font-weight: 700;
 	line-height: 1.4;
+	color: #EAE2D6;
 }
 
 .header__title strong {
@@ -41,9 +40,12 @@
 }
 
 .header__text {
+	width: 70%;
 	margin-bottom: 40px;
-	font-size: 18px;
+	font-size: 24px;
 	line-height: 1.333;
+	font-weight: 500;
+	color: #FFFFFF;
 }
 
 .header__text p + p {
