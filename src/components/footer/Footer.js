@@ -7,15 +7,47 @@ const Footer = () => {
     return ( 
     <footer className="footer">
         <div className="container">
-            <div className="footer__wrapper">
+            <div className="footer__left">
+                <div className="logo">
+                    <img src={vk} />
+                </div>
                 <ul className="social">
-                    <li className="social__item"><a href="#!"><img src={vk} alt="Link" /></a></li>
-                    <li className="social__item"><a href="#!"><img src={instagram} alt="Link" /></a></li>
-                    <li className="social__item"><a href="#!"><img src={gitHub} alt="Link" /></a></li>
+                    <li className="social__item">
+                        <a href="mailto:%danik888844@gmail.com">
+                            <span className="text__link">danik888844@gmail.com</span>
+                        </a>
+                    </li>
+                    <li className="social__item">
+                        <a href="tel:%+77471836590">
+                            <span className="text__link">+7 (747) 183-65-90</span>
+                        </a>
+                    </li>
                 </ul>
                 <div className="copyright">
                     <p>© 2024 danik888844</p>
                 </div>
+            </div>
+            <div className="footer__right">
+                <ul className="social">
+                    <li className="social__item">
+                        <a href="https://vk.com/dan4ik_za_devan4ik">
+                            <img src={vk} alt="Link" />
+                            <span className="text__link">@dan4ik_za_devan4ik</span>
+                        </a>
+                    </li>
+                    <li className="social__item">
+                        <a href="https://www.instagram.com/daniil_ugreninov">
+                            <img src={instagram} alt="Link" />
+                            <span className="text__link">@daniil_ugreninov</span>
+                        </a>
+                    </li>
+                    <li className="social__item">
+                        <a href="https://github.com/Danik888844">
+                            <img src={gitHub} alt="Link" />
+                            <span className="text__link">github.com/Danik888844</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </footer> );

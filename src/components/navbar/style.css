@@ -8,17 +8,10 @@
 	letter-spacing: normal;
 }
 
-.nav-row {
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	column-gap: 30px;
-	row-gap: 20px;
-	flex-wrap: wrap;
-}
-
 .logo {
-	margin-right: auto;
+	width: 50%;
+	display: flex;
+	align-items:first baseline;
 	color: var(--nav-text);
 	font-size: 24px;
 	font-family: 'Poppins', sans-serif;
@@ -29,7 +22,10 @@
 }
 
 .nav-list {
+	width: 50%;
+	justify-content: end;
 	display: flex;
+	align-items:last baseline;
 	flex-wrap: wrap;
 	row-gap: 10px;
 	align-items: center;
