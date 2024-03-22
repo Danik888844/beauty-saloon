@@ -15,12 +15,12 @@ const Footer = () => {
                 </div>
                 <ul className="social">
                     <li className="social__item">
-                        <a href="mailto:%danik888844@gmail.com">
+                        <a href="mailto:%danik888844@gmail.com" target="_blank" rel="noreferrer">
                             <span className="text__link">danik888844@gmail.com</span>
                         </a>
                     </li>
                     <li className="social__item">
-                        <a href="tel:%+77471836590">
+                        <a href="tel:%+77471836590" target="_blank" rel="noreferrer">
                             <span className="text__link">+7 (747) 183-65-90</span>
                         </a>
                     </li>
@@ -32,19 +32,19 @@ const Footer = () => {
             <div className="footer__right">
                 <ul className="social">
                     <li className="social__item">
-                        <a href="https://vk.com/dan4ik_za_devan4ik">
+                        <a href="https://vk.com/dan4ik_za_devan4ik" target="_blank" rel="noreferrer">
                             <img src={vk} alt="Link" />
                             <span className="text__link">@dan4ik_za_devan4ik</span>
                         </a>
                     </li>
                     <li className="social__item">
-                        <a href="https://www.instagram.com/daniil_ugreninov">
+                        <a href="https://www.instagram.com/daniil_ugreninov" target="_blank" rel="noreferrer">
                             <img src={instagram} alt="Link" />
                             <span className="text__link">@daniil_ugreninov</span>
                         </a>
                     </li>
                     <li className="social__item">
-                        <a href="https://github.com/Danik888844">
+                        <a href="https://github.com/Danik888844" target="_blank" rel="noreferrer">
                             <img src={gitHub} alt="Link" />
                             <span className="text__link">github.com/Danik888844</span>
                         </a>
