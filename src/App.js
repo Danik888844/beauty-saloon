@@ -7,6 +7,7 @@ import Contacts from "./pages/Contacts";
 import ScrollToTop from "./utils/srollToTop";
 import PriceListPage from "./pages/PriceListPage";
 import Services from "./pages/Services";
+import Masters from "./pages/Masters";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
           <Route path="/service/:id" element={<PriceListPage />} />
+          <Route path="/masters" element={<Masters />} />
           <Route path="/contacts" element={<Contacts />} />
         </Routes>
         <Footer />

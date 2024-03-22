@@ -57,7 +57,7 @@ const Home = () => {
                     Наше местоположение
                 </div>
                 <YMaps>
-                    <Map width={"100%"} height={"500px"} defaultState={{ center: [43.268895, 76.935985], zoom: 18 }} >
+                    <Map width={"100%"} height={"600px"} defaultState={{ center: [43.268895, 76.935985], zoom: 17 }} >
                         <Placemark defaultGeometry={[43.268895, 76.935985]} />
                     </Map>
                 </YMaps>
