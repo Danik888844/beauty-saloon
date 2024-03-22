@@ -20,8 +20,8 @@ const Navbar = () => {
                     </li>
 
                     <li className="nav-list__item">
-                        <NavLink to="/projects" className={({isActive})=> isActive ? activeLink : normalLink}>
-                            Услуги</NavLink>
+                        <NavLink to="/services" className={({isActive})=> isActive ? activeLink : normalLink}>
+                            Прайс-лист услуг</NavLink>
                     </li>
 
                     <li className="nav-list__item">

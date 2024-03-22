@@ -1,0 +1,50 @@
+.service-section {
+    width: 48%;
+    padding: 10px 30px;
+}
+
+.section-title{
+	margin: 0 0 15px;
+	color: #000;
+	font-family: "FuturaPT-Demi", arial, sans-serif;
+	font-size: 18px;
+    font-weight: 600;
+	line-height: 24px;
+	letter-spacing: 1px;
+}
+
+.section-info{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding: 0;
+    margin: 0 0 10px;
+}
+
+.section-item-left{
+    width: 60%;
+}
+
+.section-item-right{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 40%;
+    font-weight: 500;
+    text-align: right;
+    color: #626D71;
+}
+
+.section-item-right:after {
+    content: "₽";
+    display: inline-block;
+    font-family: "FuturaPT-Book", arial, sans-serif;
+    margin: 0 0 0 3px;
+}
+
+@media (max-width: 1024px){
+    .service-section {
+        width: 100%;
+        padding: 10px 30px;
+    }
+}

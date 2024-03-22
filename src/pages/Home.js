@@ -15,7 +15,7 @@ const Home = () => {
     return ( 
         <>
         <Header />
-        <main className="section">
+        <main className="section" style={{paddingBottom: '0px'}}>
             <div className="about">
                 <div className="about-left">
                 </div>

@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import Home from "./pages/Home";
-import Projects from "./pages/Projects";
-import ProjectPage from "./pages/ProjectPage";
 import Contacts from "./pages/Contacts";
 import ScrollToTop from "./utils/srollToTop";
+import PriceListPage from "./pages/PriceListPage";
+import Services from "./pages/Services";
 
 function App() {
   return (
@@ -16,8 +16,8 @@ function App() {
 		    <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/project/:id" element={<ProjectPage />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/service/:id" element={<PriceListPage />} />
           <Route path="/contacts" element={<Contacts />} />
         </Routes>
         <Footer />

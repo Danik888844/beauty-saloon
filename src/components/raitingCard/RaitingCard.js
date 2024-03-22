@@ -11,7 +11,7 @@ const RaitingCard = ({fullname,rate=0,desc}) => {
                     {[...Array(5)].map((star,index) => {
                         return (
                         <label>
-                            <FaStar size={20} color={rate > index ? "orange" : "gray"} />
+                            <FaStar key={index} size={20} color={rate > index ? "orange" : "gray"} />
                         </label>
                         )
                     })}
