@@ -35,5 +35,5 @@ In the '\backend' directory, you can run:
 
 ### `node server.js`
 
-It runs a localhost server on 5000 port. It is firstly, what you need before starting front-end.
+It runs a localhost server on 5000 port. This is the first thing what you need before starting front-end.
 
