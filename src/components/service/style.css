@@ -7,6 +7,13 @@
 
 .service__img {
 	border-radius: 10px;
+    width: 100%;
+    height: auto;
+    transition: filter 0.3s ease;
+}
+
+.service:hover .service__img {
+    filter: brightness(50%);
 }
 
 .service__title {

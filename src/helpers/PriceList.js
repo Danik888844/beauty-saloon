@@ -1,10 +1,10 @@
-import projects01 from "./../img/projects/01.jpg";
+import { hairdress_slides } from "../img/hairdress_img/data";
 
 const priceList = [
     {
         title: 'Парикмахерский зал',
         serviceCode: 1,
-        img: projects01,
+        slides: hairdress_slides,
         services:[
             {
                 serviceTitle: 'Стрижка',
@@ -123,7 +123,7 @@ const priceList = [
     {
         title: '',
         serviceCode: 2,
-        img: projects01,
+        slides: '',
         services:[
             {
                 serviceTitle: '',

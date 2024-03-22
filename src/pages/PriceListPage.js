@@ -1,12 +1,27 @@
+import { useState } from 'react';
 import { useParams } from "react-router-dom";
 import { priceList } from "../helpers/PriceList";
 import ServiceSection from "../components/section/ServiceSection";
+import Lightbox from 'yet-another-react-lightbox';
+import Images from '../utils/Images';
+import {
+    Captions,
+    Download,
+    Fullscreen,
+    Thumbnails,
+    Zoom,
+} from 'yet-another-react-lightbox/plugins';
+import 'yet-another-react-lightbox/styles.css';
+import 'yet-another-react-lightbox/plugins/captions.css';
+import 'yet-another-react-lightbox/plugins/thumbnails.css';
 
 const PriceListPage = () => {
     const {id} = useParams();
+    const [index, setIndex] = useState(-1);
+
     const service = priceList[id];
     const services = priceList[id].services
-    console.log(services)
+
     return ( 
         <main className="section">
             <div className="service-details">
@@ -23,6 +38,29 @@ const PriceListPage = () => {
                         );
                     })}
                 </ul>
+            </div>
+            <div className="gallery">
+                <div className='raiting-header'>
+                    Галлерея
+                </div>
+
+                <Images
+                    data={service.slides}
+                    onClick={(currentIndex) => setIndex(currentIndex)}
+                />
+
+                <Lightbox
+                    plugins={[Captions, Download, Fullscreen, Zoom, Thumbnails]}
+                    captions={{
+                    showToggle: true,
+                    descriptionTextAlign: 'end',
+                    }}
+
+                    index={index}
+                    open={index >= 0}
+                    close={() => setIndex(-1)}
+                    slides={service.slides}
+                />
             </div>
         </main>
      );
