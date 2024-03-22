@@ -292,6 +292,30 @@ body {
 		row-gap: 20px;
 	}
 
+	.footer .container{
+		flex-wrap: wrap;
+		row-gap: 20px;
+		text-align: center;
+	}
+
+	.footer__left{
+		width: 100% !important;
+	}
+
+	.footer__right{
+		width: 100% !important;
+	}
+
+	.footer__logo{
+		font-size: 14px !important;
+		justify-content: center;
+	}
+
+	.copyright{
+		font-size: 12px !important;
+		width: 100%;
+	}
+
 	/* Social */
 
 	.social {

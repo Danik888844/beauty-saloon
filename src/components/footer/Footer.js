@@ -1,4 +1,5 @@
 import "./style.css";
+import logo from "./../../img/icons/logo192.png";
 import vk from "./../../img/icons/vk.svg";
 import instagram from "./../../img/icons/instagram.svg";
 import gitHub from "./../../img/icons/gitHub.svg";
@@ -8,8 +9,9 @@ const Footer = () => {
     <footer className="footer">
         <div className="container">
             <div className="footer__left">
-                <div className="logo">
-                    <img src={vk} />
+                <div className="footer__logo">
+                    <img src={logo} alt="" style={{width: '20%'}} />
+                    <strong style={{paddingLeft: '10px'}}>Marigold</strong> beauty-salon
                 </div>
                 <ul className="social">
                     <li className="social__item">

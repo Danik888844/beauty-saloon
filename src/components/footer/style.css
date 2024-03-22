@@ -1,5 +1,14 @@
 /* Footer */
 
+.footer__logo{
+    display: flex;
+    align-items: first baseline;
+	align-items: center;
+    color: var(--nav-text);
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+}
+
 .footer {
 	margin-top: auto;
 	padding: 60px 0 50px;
