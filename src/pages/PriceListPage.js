@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { priceList } from "../helpers/PriceList";
 import ServiceSection from "../components/section/ServiceSection";
@@ -19,8 +19,14 @@ const PriceListPage = () => {
     const {id} = useParams();
     const [index, setIndex] = useState(-1);
 
-    const service = priceList[id];
-    const services = priceList[id].services
+    const [service, setService] = useState([]);
+    const [services, setServices] = useState([]);
+
+    useEffect(()=>{
+        const finded = priceList.find(i=>i.serviceCode === parseInt(id));
+        setService(finded || []);
+        setServices(finded?.services || []);
+    },[id])
 
     return ( 
         <main className="section">
@@ -34,7 +40,7 @@ const PriceListPage = () => {
                 <ul className="services">
                     {services.map((s, index)=>{
                         return (
-                            <ServiceSection key={index} title={s.serviceTitle} code={s.serviceCode} services={s.servicePrices || []} />
+                            <ServiceSection key={index} title={s.serviceTitle} services={s.servicePrices || []} />
                         );
                     })}
                 </ul>
@@ -45,7 +51,7 @@ const PriceListPage = () => {
                 </div>
 
                 <Images
-                    data={service.slides}
+                    data={service.slides || []}
                     onClick={(currentIndex) => setIndex(currentIndex)}
                 />
 

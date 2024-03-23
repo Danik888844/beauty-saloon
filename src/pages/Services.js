@@ -10,7 +10,7 @@ const Services = () => {
                 <ul className="services">
                     {priceList.map((service, index)=>{
                         return (
-                            <Service key={index} id={index} title={service.title} img={service.slides[0]?.src || logo512} />
+                            <Service key={index} id={service.serviceCode} title={service.title} img={service.slides[0]?.src || logo512} />
                         );
                     })}
                 </ul>

@@ -19,6 +19,7 @@
     flex-direction: row;
     padding: 0;
     margin: 0 0 10px;
+    border-bottom: 1px #404B51 dotted;
 }
 
 .section-item-left{
