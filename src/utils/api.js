@@ -22,3 +22,14 @@ export const registerUser = async (userData) => {
     throw error;
   }
 };
+
+export const loginUser = async (userData) => {
+  try {
+    const response = await axios.post(`${API_URL}/login`, userData);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Ошибка при отправке данных:', error);
+    throw error;
+  }
+};

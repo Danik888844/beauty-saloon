@@ -3,6 +3,7 @@ const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
 
 // Создаем приложение Express
 const app = express();
@@ -42,17 +43,54 @@ app.get('/masters', (req, res) => {
   });
 });
 
+const saltRounds = 10;
+
 app.post('/register', (req, res) => {
-  console.log(req.body);
   const { fullname, number, email, password } = req.body;
-  const sqlQuery = 'INSERT INTO users (fullname, number, email, password) VALUES (?, ?, ?, ?)';
-  connection.query(sqlQuery, [fullname, number, email, password], (error, results) => {
-    if (error) {
-      console.error('Ошибка при регистрации пользователя:', error);
+  bcrypt.hash(password, saltRounds, (err, hash) => {
+    if (err) {
+      console.error('Ошибка хеширования пароля:', err);
       res.status(500).json({ error: 'Ошибка при регистрации пользователя' });
-    } else {
-      res.status(200).json({ message: 'Пользователь успешно зарегистрирован' });
+      return;
     }
+    const sqlQuery = 'INSERT INTO users (fullname, number, email, password) VALUES (?, ?, ?, ?)';
+    connection.query(sqlQuery, [fullname, number, email, hash], (error, results) => {
+      if (error) {
+        console.error('Ошибка при регистрации пользователя:', error);
+        res.status(500).json({ error: 'Ошибка при регистрации пользователя' });
+      } else {
+        res.status(200).json({ message: 'Пользователь успешно зарегистрирован' });
+      }
+    });
+  });
+});
+
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  const sqlQuery = 'SELECT * FROM users WHERE email = ?';
+  connection.query(sqlQuery, [email], (error, results) => {
+    if (error) {
+      console.error('Ошибка при поиске пользователя:', error);
+      res.status(500).json({ error: 'Ошибка при попытке входа' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(401).json({ error: 'Пользователь с таким email не найден' });
+      return;
+    }
+    const user = results[0];
+    bcrypt.compare(password, user.password, (err, result) => {
+      if (err) {
+        console.error('Ошибка при сравнении паролей:', err);
+        res.status(500).json({ error: 'Ошибка при попытке входа' });
+        return;
+      }
+      if (result) {
+        res.status(200).json({ message: 'Успешный вход', user: user });
+      } else {
+        res.status(401).json({ error: 'Неверный пароль' });
+      }
+    });
   });
 });
 

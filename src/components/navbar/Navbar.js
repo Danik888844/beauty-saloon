@@ -39,22 +39,24 @@ const Navbar = () => {
                     </li>
 
                     {isUser ? (
-                        <li className="nav-list__item">
-                            <button onClick={clearUserData} className={normalLink}>
-                                Выход</button>
-                        </li>
+                        <>
+                            <li className="nav-list__item">
+                                <NavLink to="/contacts" className={({isActive})=> isActive ? activeLink : normalLink}>
+                                    {storedUserData.fullname}</NavLink>
+                            </li>
+                            <li className="nav-list__item">
+                                <button onClick={clearUserData} className={normalLink} style={{color: "orange"}}>
+                                    Выход</button>
+                            </li>
+                        </>
                     ) 
                     : 
                     (
-                    <li className="nav-list__item">
-                        <NavLink to="/login" className={({isActive})=> isActive ? activeLink : normalLink}>
-                        Войти</NavLink>
-                    </li>)}
-
-                    <li className="nav-list__item">
-                        <NavLink to="/contacts" className={({isActive})=> isActive ? activeLink : normalLink}>
-                            Контакты</NavLink>
-                    </li>
+                        <li className="nav-list__item">
+                            <NavLink to="/login" className={({isActive})=> isActive ? activeLink : normalLink}>
+                            Войти</NavLink>
+                        </li>
+                    )}
                 </ul>
             </div>
         </nav>
