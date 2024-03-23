@@ -2,12 +2,15 @@
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 // Создаем приложение Express
 const app = express();
 
 // Настройка CORS
 app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Настройка соединения с базой данных MySQL
 const connection = mysql.createConnection({
@@ -36,6 +39,20 @@ app.get('/masters', (req, res) => {
       return;
     }
     res.json(results);
+  });
+});
+
+app.post('/register', (req, res) => {
+  console.log(req.body);
+  const { fullname, number, email, password } = req.body;
+  const sqlQuery = 'INSERT INTO users (fullname, number, email, password) VALUES (?, ?, ?, ?)';
+  connection.query(sqlQuery, [fullname, number, email, password], (error, results) => {
+    if (error) {
+      console.error('Ошибка при регистрации пользователя:', error);
+      res.status(500).json({ error: 'Ошибка при регистрации пользователя' });
+    } else {
+      res.status(200).json({ message: 'Пользователь успешно зарегистрирован' });
+    }
   });
 });
 
