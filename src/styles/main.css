@@ -485,19 +485,19 @@ body {
 
   /* Login */
 
-  .to-register{
+.to-register{
 	display: block;
 	margin-top: 25px;
 	font-size: 14px;
 	font-weight: 600;
-  }
+}
 
-  .login-form{
+.login-form{
     height: auto;
     width: 400px;
     background-color: rgba(255,255,255,0.13);
-    position: absolute;
-    transform: translate(-50%,-50%);
+    align-self: center;
+	margin: 100px 0;
     top: 50%;
     left: 50%;
     border-radius: 10px;
@@ -542,7 +542,7 @@ body {
     color: #e5e5e5;
 }
 
-.login-form button{
+.form-button{
     margin-top: 25px;
     width: 100%;
     background-color: transparent;
@@ -555,10 +555,10 @@ body {
     cursor: pointer;
 }
 
-	.login-form button:hover{
-		background-color: var(--linen);
-	}
+.form-button:hover{
+	background-color: var(--linen);
+}
 
-.login-background{
-	height: 800px;
+.react-datepicker-wrapper{
+	width: 100%;
 }
