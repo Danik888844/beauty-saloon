@@ -146,11 +146,11 @@ body {
 	transition: opacity 0.2s ease-in;
 }
 
-.btn-outline:hover {
-	opacity: 0.8;
-	background-color: var(--linen);
-	color: var(--black);
-}
+	.btn-outline:hover {
+		opacity: 0.8;
+		background-color: var(--linen);
+		color: var(--black);
+	}
 
 .btn-outline:active {
 	position: relative;
@@ -160,6 +160,7 @@ body {
 /* services  */
 
 .services {
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
@@ -554,9 +555,9 @@ body {
     cursor: pointer;
 }
 
-.login-form button:hover{
-    background-color: var(--linen);
-}
+	.login-form button:hover{
+		background-color: var(--linen);
+	}
 
 .login-background{
 	height: 800px;
