@@ -67,7 +67,7 @@ const Register = () => {
                     <span className="to-register">Уже есть аккаунт?</span>
                 </NavLink>
 
-                <button type="submit">Зарегестрироваться</button>
+                <button className="form-button" type="submit">Зарегестрироваться</button>
                 <small style={{color: "orange"}}>{message && <p>{message}</p>}</small>
             </form>
         </>

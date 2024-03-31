@@ -43,6 +43,19 @@ app.get('/masters', (req, res) => {
   });
 });
 
+app.post('/addBooking', (req, res) => {
+  const { email, dateTime, master, services } = req.body;
+  const sqlQuery = 'INSERT INTO bookings (email, dateTime, master, services) VALUES (?, ?, ?, ?)';
+  connection.query(sqlQuery, [email, dateTime, master, services], (error, results) => {
+    if (error) {
+      console.error('Ошибка при записи:', error);
+      res.status(500).json({ error: 'Ошибка при записи' });
+    } else {
+      res.status(200).json({ message: 'Запись успешно зарегистрирована' });
+    }
+  });
+});
+
 const saltRounds = 10;
 
 app.post('/register', (req, res) => {

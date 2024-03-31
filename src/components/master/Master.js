@@ -8,13 +8,10 @@ const Master = ({fullName, exp, services}) => {
     const [filteredServices, setFilteredServices] = useState([]);
 
     useEffect(()=>{
-        const filtered = priceList.map(s => {
-            if(services.includes(s.serviceCode)){
-                return s;
-            }
-        }  );
+        const filtered = priceList.filter(s => services.includes(s.serviceCode));
 
         setFilteredServices(filtered);
+        console.log(filtered);
     },[])
     
     return ( 

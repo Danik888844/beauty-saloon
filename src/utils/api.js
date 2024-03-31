@@ -13,6 +13,16 @@ export const getAllMasters = async () => {
   }
 };
 
+export const addBooking = async (userData) => {
+  try {
+    const response = await axios.post(`${API_URL}/addBooking`, userData);
+    return response.data;
+  } catch (error) {
+    console.error('Ошибка при отправке данных:', error);
+    throw error;
+  }
+};
+
 export const registerUser = async (userData) => {
   try {
     const response = await axios.post(`${API_URL}/register`, userData);

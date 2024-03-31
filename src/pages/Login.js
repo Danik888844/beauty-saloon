@@ -53,7 +53,7 @@ const Login = () => {
                     <span className="to-register">Нет аккаунта? Зарегестрируйтесь!</span>
                 </NavLink>
 
-                <button>Войти</button>
+                <button className="form-button" type="submit">Войти</button>
                 <small style={{color: "orange"}}>{message && <p>{message}</p>}</small>
             </form>
         </>

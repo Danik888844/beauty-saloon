@@ -4,18 +4,18 @@ import ReactDatePicker from "react-datepicker";
 import useLocalStorage from "../utils/useLocalStorage";
 import Select from 'react-select';
 import { priceList } from "../helpers/PriceList";
-import { getAllMasters } from "../utils/api";
+import { addBooking, getAllMasters } from "../utils/api";
 import 'react-datepicker/dist/react-datepicker.module.css';
 
 const ServiceForm = () => {
 
     const navigate = useNavigate();
-    const services = priceList.map((s)=>{
+    const [services, setServices] = useState(priceList.map((s)=>{
         return {
             value: s.serviceCode,
             label: s.title
         }
-    }) || [];
+    }) || []);
     const [masters, setMasters] = useState([]);
 
     const [storedUserData] = useLocalStorage('userData', {});
@@ -27,16 +27,15 @@ const ServiceForm = () => {
     const year = currentDate.getFullYear();
     const now = `${day}/${month}/${year}`;
 
-    const calc_date = ()=>{
-        const [day, month, year] = userData?.dateTime.split('/');
+    const calc_date = (time)=>{
+        const [day, month, year] = time.split('/');
         const res = new Date(year, month - 1, day);
         console.log(res);
         return res;
     };
 
     const [userData, setUserData] = useState({
-        fullname: storedUserData?.fullname,
-        phoneNumber: storedUserData?.number,
+        email: storedUserData?.email,
         dateTime: now,
         services: [],
         master: '',
@@ -44,7 +43,7 @@ const ServiceForm = () => {
       const [message, setMessage] = useState('');
 
       useEffect(()=>{
-        if(isUser){
+        if(!isUser){
             navigate("/");
             return 0;
         }
@@ -52,7 +51,12 @@ const ServiceForm = () => {
         const fetchData = async () => {
             try {
               const data = await getAllMasters();
-              setMasters(data);
+              setMasters(data.map((m)=>{
+                return {
+                    value: m,
+                    label: m.fullName
+                }
+            }) || []);
             } catch (error) {
               console.log(error)
             }
@@ -61,23 +65,14 @@ const ServiceForm = () => {
           fetchData();
       },[])
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setUserData(prevState => ({
-          ...prevState,
-          [name]: value
-        }));
-        console.log(userData);
-      };
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            //const response = await registerUser(userData);
-            console.log("response");
+            const response = await addBooking({...userData, services: JSON.stringify(userData.services.map(s=>s.value))});
+            console.log(response);
         } catch (error) {
-            console.error('Ошибка при регистрации:', error);
-            setMessage('Ошибка при регистрации');
+            console.error('Ошибка при записи:', error);
+            setMessage('Ошибка при записи');
         }
     };
 
@@ -88,8 +83,9 @@ const ServiceForm = () => {
 
                 <label htmlFor="dateTime">Время</label>
                 <ReactDatePicker required 
-                selected={calc_date()} 
-                id="dateTime" 
+                minDate={new Date()}
+                selected={calc_date(userData?.dateTime)} 
+                id="dateTime" name="dateTime"
                 onChange={(choiced)=>{
                         if(choiced){
                             setUserData(prevState => ({
@@ -101,10 +97,24 @@ const ServiceForm = () => {
                 } dateFormat='dd/MM/yyyy' />
 
                 <label htmlFor="masters">Мастер</label>
-                <Select required id="masters" name="master" options={masters} onChange={handleChange} />
+                <Select required id="masters" name="master" isClearable options={masters} onChange={(choiced)=>{
+                    setUserData(prevState => ({
+                        ...prevState,
+                        master: choiced?.value?.id || null,
+                        services: []
+                      }));
+
+                    const filtered = choiced?.value ? priceList.filter(s => choiced.value?.services?.includes(s.serviceCode)) : priceList;
+                    setServices(filtered.map(s=> {
+                        return {
+                            value: s.serviceCode,
+                            label: s.title
+                        }
+                    }))
+                }} />
 
                 <label htmlFor="services">Услуги</label>
-                <Select required id="services" isMulti options={services} onChange={(choiced)=>{
+                <Select required id="services" name="services" value={userData.services} isMulti options={services} onChange={(choiced)=>{
                     setUserData(prevState => ({
                         ...prevState,
                         services: choiced
