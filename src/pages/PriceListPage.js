@@ -14,6 +14,8 @@ import {
 import 'yet-another-react-lightbox/styles.css';
 import 'yet-another-react-lightbox/plugins/captions.css';
 import 'yet-another-react-lightbox/plugins/thumbnails.css';
+import Master from '../components/master/Master';
+import { getAllMasters } from '../utils/api';
 
 const PriceListPage = () => {
     const {id} = useParams();
@@ -21,6 +23,23 @@ const PriceListPage = () => {
 
     const [service, setService] = useState([]);
     const [services, setServices] = useState([]);
+    const [masters, setMasters] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+        try {
+            const data = await getAllMasters();
+            const finded = data.filter(m=>{
+                return m.services.includes(id);
+            });
+            setMasters(finded);
+        } catch (error) {
+            console.log(error)
+        }
+        };
+
+        fetchData();
+    }, []);
 
     useEffect(()=>{
         const finded = priceList.find(i=>i.serviceCode === parseInt(id));
@@ -46,7 +65,19 @@ const PriceListPage = () => {
                 </ul>
             </div>
             <div className="gallery">
-                <div className='raiting-header'>
+                <div className="raiting-header">
+                    Мастера
+                </div>
+                <ul className="services">
+                    {masters.map((master, index)=>{
+                        return (
+                            <Master key={index} fullName={master.fullName} exp={master.expirience} services={master.services} />
+                        );
+                    })}
+                </ul>
+            </div>
+            <div className="gallery">
+                <div className="raiting-header">
                     Галлерея
                 </div>
 
