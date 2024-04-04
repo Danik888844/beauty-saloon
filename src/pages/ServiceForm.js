@@ -8,17 +8,17 @@ import { addBooking, getAllMasters } from "../utils/api";
 import 'react-datepicker/dist/react-datepicker.module.css';
 
 const ServiceForm = () => {
-    const {masterId, serviceCode} = useParams();
-    const serviceParams = priceList.find(s => s.serviceCode === parseInt(serviceCode));
-
     const navigate = useNavigate();
+    const [masters, setMasters] = useState([]);
+
+    const {masterId} = useParams();
+
     const [services, setServices] = useState(priceList.map((s)=>{
         return {
             value: s.serviceCode,
             label: s.title
         }
     }) || []);
-    const [masters, setMasters] = useState([]);
 
     const [storedUserData] = useLocalStorage('userData', {});
     const isUser = Object.keys(storedUserData).length > 0;
@@ -39,15 +39,15 @@ const ServiceForm = () => {
     const [userData, setUserData] = useState({
         email: storedUserData?.email,
         dateTime: now,
-        services: [{value: serviceParams.serviceCode, label: serviceParams.title}],
+        services: [],
         master: '',
       });
       const [message, setMessage] = useState('');
 
       useEffect(()=>{
         if(!isUser){
-            navigate("/");
-            return 0;
+            navigate("/login");
+            return;
         }
 
         const fetchData = async () => {
@@ -60,16 +60,8 @@ const ServiceForm = () => {
                 }
                 }) || []);
 
-                const finded = data.find(m => m.id === masterId);
-                setUserData(prevState => ({
-                    ...prevState,
-                    master: {
-                        value: finded,
-                        label: finded.fullName
-                    },
-                    services: []
-                }));
-
+                const res = data.find(m => m.id === parseInt(masterId));
+                handleMasters(res ? {value: res, label: res?.fullName} : '');
             } catch (error) {
               console.log(error)
             }
@@ -81,7 +73,7 @@ const ServiceForm = () => {
     const handleMasters = (choiced) =>{
         setUserData(prevState => ({
             ...prevState,
-            master: choiced?.value || null,
+            master: choiced || null,
             services: []
             }));
 
@@ -98,9 +90,10 @@ const ServiceForm = () => {
         event.preventDefault();
         try {
             const response = await addBooking({...userData, 
-                master: JSON.stringify(userData.master.map(m=>m.value.id)),
+                master: JSON.stringify(userData.master.value.id),
                 services: JSON.stringify(userData.services.map(s=>s.value))});
             console.log(response);
+            setMessage('Запись успешно создана!');
         } catch (error) {
             console.error('Ошибка при записи:', error);
             setMessage('Ошибка при записи');
@@ -128,7 +121,7 @@ const ServiceForm = () => {
                 } dateFormat='dd/MM/yyyy' />
 
                 <label htmlFor="masters">Мастер</label>
-                <Select required id="masters" name="master" isClearable options={masters} onChange={handleMasters} />
+                <Select required id="masters" name="master" value={userData.master} isClearable options={masters} onChange={handleMasters} />
 
                 <label htmlFor="services">Услуги</label>
                 <Select required id="services" name="services" value={userData.services} isMulti options={services} onChange={(choiced)=>{

@@ -25,7 +25,7 @@ function App() {
           <Route path="/masters" element={<Masters />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/form/:master/:serviceCode?" element={<ServiceForm />} />
+          <Route path="/form/:masterId" element={<ServiceForm />} />
           <Route path="/contacts" element={<Contacts />} />
         </Routes>
         <Footer />

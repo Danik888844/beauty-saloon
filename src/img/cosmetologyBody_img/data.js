@@ -9,7 +9,7 @@ import img8 from './img8.jpeg';
 
 export const cosmetologyBody_slides = [
     {
-        src: img1,
+        src: img8,
         title: 'Slide 1',
         description: 'cosmetology Body'
     },
@@ -44,7 +44,7 @@ export const cosmetologyBody_slides = [
         description: 'cosmetology Body'
     },
     {
-        src: img8,
+        src: img1,
         title: 'Slide 8',
         description: 'cosmetology Body'
     }

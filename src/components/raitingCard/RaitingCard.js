@@ -4,20 +4,20 @@ import "./style.css";
 const RaitingCard = ({fullname,rate=0,desc}) => {
     return ( 
         <div id="container">	
-            <div class="product-details">
+            <div className="product-details">
                 
                 <h1>{fullname}</h1>
                 <div className="rate">
                     {[...Array(5)].map((star,index) => {
                         return (
-                        <label>
-                            <FaStar key={index} size={20} color={rate > index ? "orange" : "gray"} />
+                        <label key={index}>
+                            <FaStar size={20} color={rate > index ? "orange" : "gray"} />
                         </label>
                         )
                     })}
                 </div>
                 
-                <p class="information">{desc}</p>  
+                <p className="information">{desc}</p>  
             </div>
         </div>
     );

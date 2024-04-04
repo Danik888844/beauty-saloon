@@ -9,7 +9,7 @@
 }
 
 .logo {
-	width: 50%;
+	width: 30%;
 	display: flex;
 	align-items:first baseline;
 	color: var(--nav-text);
@@ -21,8 +21,34 @@
 	font-weight: 700;
 }
 
+.btn-login{
+	border: 1px solid #58b553;
+	color: #58b553;
+	width: 100%;
+	font-size: 16px;
+	padding: 5px;
+}
+
+.btn-login:hover{
+	background-color: #58b553;
+	color: var(--white);
+}
+
+.btn-exit{
+	border: 1px solid #b55353;
+	color: #b55353;
+	width: 100%;
+	font-size: 16px;
+	padding: 5px;
+}
+
+.btn-exit:hover{
+	background-color: #b55353;
+	color: var(--white);
+}
+
 .nav-list {
-	width: 50%;
+	width: 70%;
 	justify-content: end;
 	display: flex;
 	align-items:last baseline;

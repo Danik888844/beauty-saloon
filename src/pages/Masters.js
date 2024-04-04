@@ -22,13 +22,17 @@ const Masters = () => {
         <main className="section">
             <div className="container" style={{flexDirection: "column"}}>
                 <h2 className="services-title">Мастера</h2>
-                <ul className="services">
-                    {masters.map((master, index)=>{
-                        return (
-                            <Master key={index} fullName={master.fullName} exp={master.expirience} services={master.services} />
-                        );
-                    })}
-                </ul>
+                {masters.length > 0 ?
+                  <ul className="services">
+                      {masters.map((master, index)=>{
+                          return (
+                              <Master key={index} master={master} />
+                          );
+                      })}
+                  </ul>
+                  :
+                  <div>К сожалению, пока нет ни одного мастера</div>
+                }
             </div>
         </main>
      );

@@ -21,7 +21,7 @@ const Header = () => {
             <p>Салон Marigold совсем молодой, но уже готов соревноваться по уровню качества с лучшими салонами красоты </p>
         </div>
         
-        <a href={isUser ?  "/form" : "/login"} className="btn-outline">Записаться</a>
+        <a href={"/form/0"} className="btn-outline">Записаться</a>
     </header>);
 }
  

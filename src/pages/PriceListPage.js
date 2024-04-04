@@ -68,13 +68,17 @@ const PriceListPage = () => {
                 <div className="raiting-header">
                     Мастера
                 </div>
-                <ul className="services">
-                    {masters.map((master, index)=>{
-                        return (
-                            <Master key={index} fullName={master.fullName} exp={master.expirience} services={master.services} />
-                        );
-                    })}
-                </ul>
+                { masters.length > 0 ?
+                    <ul className="services">
+                        {masters.map((master, index)=>{
+                            return (
+                                <Master key={index} serviceId={id} master={master} />
+                            );
+                        })}
+                    </ul>
+                    :
+                    <div>К сожалению, пока нет ни одного мастера для данной услуги :(</div>
+                }
             </div>
             <div className="gallery">
                 <div className="raiting-header">

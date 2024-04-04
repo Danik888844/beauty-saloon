@@ -42,10 +42,10 @@ const Navbar = () => {
                         <>
                             <li className="nav-list__item">
                                 <NavLink to="/contacts" className={({isActive})=> isActive ? activeLink : normalLink}>
-                                    {storedUserData.fullname}</NavLink>
+                                    Профиль</NavLink>
                             </li>
                             <li className="nav-list__item">
-                                <button onClick={clearUserData} className={normalLink} style={{color: "orange"}}>
+                                <button onClick={clearUserData} className="btn-exit">
                                     Выход</button>
                             </li>
                         </>
@@ -53,7 +53,7 @@ const Navbar = () => {
                     : 
                     (
                         <li className="nav-list__item">
-                            <NavLink to="/login" className={({isActive})=> isActive ? activeLink : normalLink}>
+                            <NavLink to="/login" className="btn-login">
                             Войти</NavLink>
                         </li>
                     )}
