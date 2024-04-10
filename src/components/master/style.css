@@ -5,6 +5,11 @@
 	border-radius: 10px;
 }
 
+.master__card label{
+	padding: 10px;
+	font-size: 18px;
+}
+
 .master__img {
 	border-radius: 10px;
     width: 100%;
@@ -58,7 +63,6 @@
 	z-index: 5;
 	background: var(--linen);
 	box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-	color: #fff;
 	opacity: 1;
 }
 .master__service__container ul li span {

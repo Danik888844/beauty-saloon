@@ -41,7 +41,7 @@ const Navbar = () => {
                     {isUser ? (
                         <>
                             <li className="nav-list__item">
-                                <NavLink to="/contacts" className={({isActive})=> isActive ? activeLink : normalLink}>
+                                <NavLink to="/profile" className={({isActive})=> isActive ? activeLink : normalLink}>
                                     Профиль</NavLink>
                             </li>
                             <li className="nav-list__item">

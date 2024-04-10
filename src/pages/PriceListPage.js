@@ -64,7 +64,7 @@ const PriceListPage = () => {
                     })}
                 </ul>
             </div>
-            <div className="gallery">
+            <div className="block">
                 <div className="raiting-header">
                     Мастера
                 </div>
@@ -80,7 +80,7 @@ const PriceListPage = () => {
                     <div>К сожалению, пока нет ни одного мастера для данной услуги :(</div>
                 }
             </div>
-            <div className="gallery">
+            <div className="block">
                 <div className="raiting-header">
                     Галлерея
                 </div>

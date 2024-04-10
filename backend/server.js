@@ -43,6 +43,19 @@ app.get('/masters', (req, res) => {
   });
 });
 
+app.get('/bookingsByEmail', (req, res) => {
+  const {email} = req.query;
+  const sqlQuery = 'SELECT * FROM bookings WHERE email = ?';
+  connection.query(sqlQuery, [email] ,(err, results) => {
+    if (err) {
+      console.error('Ошибка выполнения запроса:', err);
+      res.status(500).json({ error: 'Ошибка выполнения запроса' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
 app.post('/addBooking', (req, res) => {
   const { email, dateTime, master, services } = req.body;
   const sqlQuery = 'INSERT INTO bookings (email, dateTime, master, services) VALUES (?, ?, ?, ?)';
@@ -107,8 +120,53 @@ app.post('/login', (req, res) => {
   });
 });
 
+app.put('/changePassword', (req, res) => {
+  const { email, currentPassword, newPassword } = req.body;
+  const sqlQuery = 'SELECT * FROM users WHERE email = ?';
+  connection.query(sqlQuery, [email], (error, results) => {
+    if (error) {
+      console.error('Ошибка при поиске пользователя:', error);
+      res.status(500).json({ error: 'Ошибка при попытке изменить пароль' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Пользователь с таким email не найден' });
+      return;
+    }
+    const user = results[0];
+    bcrypt.compare(currentPassword, user.password, (err, result) => {
+      if (err) {
+        console.error('Ошибка при сравнении паролей:', err);
+        res.status(500).json({ error: 'Ошибка при попытке изменить пароль' });
+        return;
+      }
+      if (!result) {
+        res.status(401).json({ error: 'Текущий пароль неверен' });
+        return;
+      }
+      bcrypt.hash(newPassword, saltRounds, (hashError, hash) => {
+        if (hashError) {
+          console.error('Ошибка хеширования нового пароля:', hashError);
+          res.status(500).json({ error: 'Ошибка при попытке изменить пароль' });
+          return;
+        }
+        const updateQuery = 'UPDATE users SET password = ? WHERE email = ?';
+        connection.query(updateQuery, [hash, email], (updateError, updateResults) => {
+          if (updateError) {
+            console.error('Ошибка при обновлении пароля:', updateError);
+            res.status(500).json({ error: 'Ошибка при попытке изменить пароль' });
+            return;
+          }
+          res.status(200).json({ message: 'Пароль успешно изменен' });
+        });
+      });
+    });
+  });
+});
+
+
 // Слушаем порт
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 app.listen(port, () => {
   console.log(`Сервер запущен на порте ${port}`);
 });

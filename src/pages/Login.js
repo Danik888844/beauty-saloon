@@ -44,10 +44,10 @@ const Login = () => {
                 <h3>Вход в аккаунт</h3>
 
                 <label htmlFor="username">Логин</label>
-                <input type="text" placeholder="Email" id="username" name="email" onChange={handleChange} />
+                <input type="text" placeholder="Email" id="username" name="email" required onChange={handleChange} />
 
                 <label htmlFor="password">Пароль</label>
-                <input type="password" placeholder="Password" id="password" name="password" onChange={handleChange} />
+                <input type="password" placeholder="Password" id="password" name="password" required onChange={handleChange} />
 
                 <NavLink to="/register">
                     <span className="to-register">Нет аккаунта? Зарегестрируйтесь!</span>
